@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src = "{% static 'coment.js' %}"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom transitions */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #1a202c;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #4a5568;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+}
+
+    </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+
+    <custom-navbar></custom-navbar>
+
+    <main class="container mx-auto px-4 py-10 max-w-4xl">
+
+        <!-- Post Card -->
+        <article class="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden">
+
+            {% if post.image %}
+            <img src="{{ post.image.url }}" alt="{{ post.title }}"
+                 class="w-full h-80 object-cover">
+            {% endif %}
+
+            <div class="p-8">
+
+                <!-- Meta -->
+                <div class="flex items-center justify-between mb-4 text-sm text-gray-500 dark:text-gray-400">
+                    <span>✍️ {{ post.author }}</span>
+                    <span>📅 {{ post.puplished_date }}</span>
+                </div>
+
+                <!-- Title -->
+                <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-6">
+                    {{ post.title }}
+                </h1>
+
+                <!-- Body -->
+                <div class="text-gray-700 dark:text-gray-300 leading-relaxed text-lg space-y-4">
+                    {{ post.body|linebreaks }}
+                </div>
+
+                <!-- Back button -->
+                <div class="mt-8">
+                    <a href="/"
+                       class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition">
+                        ← Asosiyga qaytish
+                    </a>
+                </div>
+
+            </div>
+        </article>
+
+    
+
+    
+
+        <!-- Latest Posts -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Kommentariyalar</h2>
+                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Barchasi</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Post 1 -->
+                {% for comment in post.comments.all %}
+                <article class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        
+                        <div>
+                            <h4 class="font-medium text-gray-800 dark:text-white"></h4>
+                            <span class="text-sm text-gray-500">Tasdiqlangan</span>
+                        </div>
+                    </div>
+                    <h3 class=" text-xl font-bold mb-3 text-gray-800 dark:text-white">{{comment.author}}</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">{{comment.comment}}</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">{{comment.puplished_date}} </span>
+                        
+                    </div>
+                    
+                </article>
+                {% endfor %}
+
+                <!-- Post 2 -->
+                
+    <h2 class="text-2xl font-bold text-gray-800 dark:text-white mb-6">
+        💬 Comments
+    </h2>
+
+    <!-- Comment Form -->
+    <form method="post" class="mb-8 space-y-4">
+        {% csrf_token %}
+        
+        <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Your Name
+            </label>
+            <input type="text" name="name"
+                   placeholder="Enter your name"
+                   class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
+                          dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none">
+        </div>
+
+        <div>
+            <label class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
+                Your Comment
+            </label>
+            <textarea name="comment" rows="4"
+                      placeholder="Write your comment here..."
+                      class="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600
+                             dark:bg-gray-700 dark:text-white focus:ring-2 focus:ring-blue-500 outline-none"></textarea>
+        </div>
+
+        <button type="submit"
+                class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg transition">
+            Post Comment
+        </button>
+    </form>
+
+    <!-- Comment List -->
+    <div class="space-y-6">
+
+        {% for comment in comments %}
+        <div class="border-b border-gray-200 dark:border-gray-700 pb-4">
+            <div class="flex justify-between items-center mb-2">
+                <h4 class="font-semibold text-gray-800 dark:text-white">
+                    {{ comment.name }}
+                </h4>
+                <span class="text-sm text-gray-500">
+                    {{ comment.created_at }}
+                </span>
+            </div>
+
+            <p class="text-gray-700 dark:text-gray-300">
+                {{ comment.body }}
+            </p>
+        </div>
+        {% empty %}
+        <p class="text-gray-500 dark:text-gray-400">
+            No comments yet. Be the first to comment!
+        </p>
+        {% endfor %}
+
+    </div>
+</section>
+            </div>
+        </section>
+
+    </articles></main>
+    <custom-footer></custom-footer>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <title>{{categoriya.name}}</title>
+  <link rel="stylesheet" href="{% static 'tags.css' %}">
+</head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+      <h1>All Articles</h1>
+    </div>
+
+    <!-- Notification badge: shows number of categories -->
+    <div class="notif-badge" id="category-count">{{cat.posts.all.count}}</div>
+
+    <!-- CATEGORY BAR (buttons) -->
+    <div class="category-bar" id="categoryBar" role="toolbar" aria-label="Categories">
+      <!-- Example static buttons — o'zingiz backenddan yoki JS bilan dinamik joylashingiz mumkin -->
+      <a href="/" style="text-decoration: none;color: #111;"> <button class="cat-btn" id="all-cat" data-slug="all" aria-pressed="true">All</button></a>
+
+      
+      
+       <a href="tags/../{{category.id}}" style="text-decoration: none; color: #111;"> <button class="cat-btn" data-slug="technology">{{cat.name}} <span class="badge">{{cat.posts.all.count}}</span></button></a>
+      
+      
+    </div>
+   
+    
+    <div class="post-card" data-category="technology">
+      <h2 class="post-title">{{p.Post.title}}</h2>
+      <div class="post-meta">Author: John Doe · Date: 2025-11-26 · Views: 120</div>
+      <p class="post-body">Bu texnologiya haqida qisqacha kirish — Lorem ipsum dolor sit amet...</p>
+    </div>
+    
+    
+   
+
+  </div>
+
+  <script>
+    // --- JS: hisoblash, badge yangilash va tugma orqali filtr ---
+    (function(){
+      const bar = document.getElementById('categoryBar');
+      const badge = document.getElementById('category-count');
+
+      // Count only real categories (exclude "All")
+      function updateBadge(){
+        const buttons = bar.querySelectorAll('.cat-btn');
+        // If you want to exclude the "All" button from count, subtract 1:
+        const count = Math.max(0, buttons.length - (bar.querySelector('#all-cat') ? 1 : 0));
+        badge.textContent = count;
+        // add accessible label
+        badge.setAttribute('aria-label', count + ' categories available');
+      }
+
+      updateBadge();
+
+      // Filtering posts by category when clicking buttons
+      function clearActive(){
+        bar.querySelectorAll('.cat-btn').forEach(b => {
+          b.classList.remove('active');
+          b.setAttribute('aria-pressed','false');
+        });
+      }
+
+      bar.addEventListener('click', function(e){
+        const btn = e.target.closest('.cat-btn');
+        if(!btn) return;
+        const slug = btn.dataset.slug || 'all';
+        clearActive();
+        btn.classList.add('active');
+        btn.setAttribute('aria-pressed','true');
+
+        const posts = document.querySelectorAll('.post-card');
+        if(slug === 'all'){
+          posts.forEach(p => p.style.display = '');
+        } else {
+          posts.forEach(p => {
+            const cat = p.dataset.category || '';
+            p.style.display = (cat === slug) ? '' : 'none';
+          });
+        }
+
+        // optional: scroll the clicked button into view for small screens
+        btn.scrollIntoView({ behavior:'smooth', inline:'center' });
+      });
+
+      // Accessibility: keyboard support (Enter/Space)
+      bar.addEventListener('keydown', function(e){
+        const key = e.key;
+        if(key !== 'Enter' && key !== ' ') return;
+        const btn = e.target.closest('.cat-btn');
+        if(!btn) return;
+        e.preventDefault();
+        btn.click();
+      });
+
+      // If categories are loaded dynamically (from backend), call updateBadge() afterwards.
+      // Example: if fetched categories array, you could create buttons and then updateBadge().
+      window.updateCategoryBadge = updateBadge;
+    })();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mystic Void Explorer</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                50: '#f0f9ff',
+                100: '#e0f2fe',
+                200: '#bae6fd',
+                300: '#7dd3fc',
+                400: '#38bdf8',
+                500: '#0ea5e9',
+                600: '#0284c7',
+                700: '#0369a1',
+                800: '#075985',
+                900: '#0c4a6e',
+              },
+              secondary: {
+                50: '#f5f3ff',
+                100: '#ede9fe',
+                200: '#ddd6fe',
+                300: '#c4b5fd',
+                400: '#a78bfa',
+                500: '#8b5cf6',
+                600: '#7c3aed',
+                700: '#6d28d9',
+                800: '#5b21b6',
+                900: '#4c1d95',
+              }
+            }
+          }
+        }
+      }
+    </script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+</head>
+<body class="bg-gray-900 text-gray-100 min-h-screen">
+    <custom-navbar></custom-navbar>
+    
+    <main class="container mx-auto px-4 py-12">
+        <section class="text-center mb-16">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary-400 to-secondary-500">
+                Title
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
+                Journey through the unknown dimensions where reality bends and possibilities are infinite.
+            </p>
+        </section>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-primary-500/20 transition-all duration-300 hover:-translate-y-2">
+                <div class="text-primary-400 mb-4">
+                    <i data-feather="compass" class="w-12 h-12"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-3">Dimensional Navigation</h3>
+                <p class="text-gray-400">Chart courses through the fractal dimensions with our quantum compass technology.</p>
+            </div>
+
+            <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-secondary-500/20 transition-all duration-300 hover:-translate-y-2">
+                <div class="text-secondary-400 mb-4">
+                    <i data-feather="eye" class="w-12 h-12"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-3">Void Vision</h3>
+                <p class="text-gray-400">See beyond the veil of reality with our enhanced perception modules.</p>
+            </div>
+
+            <div class="bg-gray-800 rounded-xl p-6 shadow-lg hover:shadow-primary-500/20 transition-all duration-300 hover:-translate-y-2">
+                <div class="text-primary-400 mb-4">
+                    <i data-feather="zap" class="w-12 h-12"></i>
+                </div>
+                <h3 class="text-2xl font-bold mb-3">Quantum Energy</h3>
+                <p class="text-gray-400">Harness the raw power of the void with our patented energy converters.</p>
+            </div>
+        </div>
+
+        <section class="mt-20">
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8 md:p-12 shadow-2xl">
+                <div class="flex flex-col md:flex-row items-center gap-8">
+                    <div class="flex-1">
+                        <h2 class="text-3xl md:text-4xl font-bold mb-6">Ready to Begin Your Journey?</h2>
+                        <p class="text-lg text-gray-300 mb-8">Join thousands of explorers who have already stepped beyond the boundaries of conventional reality.</p>
+                        <button class="bg-gradient-to-r from-primary-500 to-secondary-600 text-white px-8 py-3 rounded-full font-bold hover:opacity-90 transition-all">
+                            Embark Now
+                        </button>
+                    </div>
+                    <div class="flex-1">
+                        <div class="relative">
+                            <div class="absolute -inset-4 bg-gradient-to-r from-primary-500 to-secondary-600 rounded-2xl blur opacity-75"></div>
+                            <img src="http://static.photos/abstract/1024x576/42" alt="Void Portal" class="relative rounded-xl w-full h-auto">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+    </script>
+</body>
+</html>

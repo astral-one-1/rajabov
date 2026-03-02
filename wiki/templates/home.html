@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="uz">
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="{% static 'home.css' %}">
+  <title>Barcha bloglar</title>
+ </head>
+<body>
+
+  <div class="container">
+
+    <!-- HEADER -->
+    <div class="header">
+      <h1>Barcha bloglar</h1>
+    </div>
+
+    <!-- Notification badge: shows number of categories -->
+    
+
+    <!-- CATEGORY BAR (buttons) -->
+    <div class="category-bar" id="categoryBar" role="toolbar" aria-label="Categories">
+      <!-- Example static buttons — o'zingiz backenddan yoki JS bilan dinamik joylashingiz mumkin -->
+      <button class="cat-btn" id="all-cat" data-slug="all" aria-pressed="true">All</button>
+      {% for cat in categories %}
+       <a href="tags/{{cat.id}}" style="text-decoration: none; color: #111;"> <button class="cat-btn" data-slug="technology">{{cat.name}} <span class="badge">{{cat.posts.all.count}}</span></button></a>
+      {% endfor %}
+      <!-- Qo'shimcha tugmalar kerak bo'lsa shu yerga qo'shing -->
+    
+    </div>
+    
+    
+    {% for post in posts %}
+    <a href="more/{{post.id}}" style="text-decoration: none; color: black;">
+    <!-- POSTS (misol) -->
+    <div class="post-card" data-category="technology">
+      <h2 class="post-title">{{post.title}}</h2>
+      <div class="post-meta">Author: {{post.author}} · Tags: #{{post.tag}}  ·  Date: {{post.puplished_date}} · Views: {{post.views}} </div>
+      <p class="post-body">{{post.body|truncatewords:'35'}}</p>
+    </div>
+</a>
+    {% endfor %}
+
+  </div>
+
+  
+   
+    
+</body>
+</html>

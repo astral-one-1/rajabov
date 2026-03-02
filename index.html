@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RaJaBoV1 News Hub</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="components/navbar.js"></script>
+    <script src="components/footer.js"></script>
+    <style>
+        /* Custom styles that extend Tailwind */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+body {
+    font-family: 'Inter', sans-serif;
+}
+
+/* Smooth scroll behavior */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Custom transitions */
+.transition-all {
+    transition-property: all;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+.dark ::-webkit-scrollbar-track {
+    background: #1a202c;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #4a5568;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+    background: #718096;
+}
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 transition-colors duration-300">
+    <custom-navbar></custom-navbar>
+    
+    <main class="container mx-auto px-4 py-8">
+        <!-- Hero Section -->
+        <section class="mb-12">
+            <div class="bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl p-8 text-white dark:from-blue-800 dark:to-purple-800">
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">Stay Informed with RaJaBoV1</h1>
+                <p class="text-xl mb-6">Your trusted source for the latest news and updates</p>
+                <a href="#trending" class="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium hover:bg-gray-100 transition">Explore Trending</a>
+            </div>
+        </section>
+
+        <!-- Trending News -->
+        <section id="trending" class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Trending Now</h2>
+                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View All</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- News Card 1 -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                    <img src="http://static.photos/technology/640x360/1" alt="Tech news" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-blue-600 dark:text-blue-400">Technology</span>
+                        <h3 class="text-xl font-bold mt-2 mb-3 text-gray-800 dark:text-white">New AI Breakthrough Changes Everything</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Scientists have developed an AI that can predict outcomes with unprecedented accuracy.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">2 hours ago</span>
+                            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Read More</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- News Card 2 -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                    <img src="http://static.photos/business/640x360/2" alt="Business news" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-green-600 dark:text-green-400">Business</span>
+                        <h3 class="text-xl font-bold mt-2 mb-3 text-gray-800 dark:text-white">Global Markets Reach All-Time High</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Stock markets worldwide surge as economic recovery exceeds expectations.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">5 hours ago</span>
+                            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Read More</a>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- News Card 3 -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl overflow-hidden shadow-md hover:shadow-lg transition-shadow">
+                    <img src="http://static.photos/health/640x360/3" alt="Health news" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <span class="text-sm text-red-600 dark:text-red-400">Health</span>
+                        <h3 class="text-xl font-bold mt-2 mb-3 text-gray-800 dark:text-white">New Study Reveals Benefits of Mediterranean Diet</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-4">Research confirms significant health improvements for those following this eating pattern.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-gray-500">1 day ago</span>
+                            <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Read More</a>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Latest Posts -->
+        <section class="mb-12">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-gray-800 dark:text-white">Latest Posts</h2>
+                <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">View All</a>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Post 1 -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/200x200/1" alt="Author" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium text-gray-800 dark:text-white">Sarah Johnson</h4>
+                            <span class="text-sm text-gray-500">Tech Reporter</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">The Future of Remote Work in 2023</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">As companies adapt to hybrid models, we explore what the future holds for remote work policies and technologies.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">3 days ago • 8 min read</span>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Read Post</a>
+                    </div>
+                </article>
+
+                <!-- Post 2 -->
+                <article class="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow">
+                    <div class="flex items-center mb-4">
+                        <img src="http://static.photos/people/200x200/2" alt="Author" class="w-10 h-10 rounded-full mr-3">
+                        <div>
+                            <h4 class="font-medium text-gray-800 dark:text-white">Michael Chen</h4>
+                            <span class="text-sm text-gray-500">Finance Analyst</span>
+                        </div>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-gray-800 dark:text-white">Understanding the Cryptocurrency Market Shift</h3>
+                    <p class="text-gray-600 dark:text-gray-300 mb-4">Recent regulatory changes are reshaping the crypto landscape. Here's what investors need to know.</p>
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">4 days ago • 10 min read</span>
+                        <a href="#" class="text-blue-600 dark:text-blue-400 hover:underline">Read Post</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Newsletter -->
+        <section class="bg-gray-100 dark:bg-gray-800 rounded-2xl p-8 mb-12">
+            <div class="max-w-2xl mx-auto text-center">
+                <h2 class="text-2xl font-bold mb-4 text-gray-800 dark:text-white">Stay Updated</h2>
+                <p class="text-gray-600 dark:text-gray-300 mb-6">Subscribe to our newsletter to receive the latest news and updates directly in your inbox.</p>
+                <form class="flex flex-col sm:flex-row gap-3">
+                    <input type="email" placeholder="Your email address" class="flex-grow px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 dark:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                    <button type="submit" class="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <custom-footer></custom-footer>
+
+    <script src="script.js"></script>
+    <script>
+        feather.replace();
+        // Theme toggle functionality
+document.addEventListener('DOMContentLoaded', () => {
+    // Check for saved theme preference or use system preference
+    const savedTheme = localStorage.getItem('theme') || 
+                      (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+    document.documentElement.classList.add(savedTheme);
+    
+    // Initialize theme toggle button
+    const themeToggle = document.getElementById('theme-toggle');
+    if (themeToggle) {
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+            document.documentElement.classList.remove('light', 'dark');
+            document.documentElement.classList.add(currentTheme);
+            localStorage.setItem('theme', currentTheme);
+            
+            // Update icon
+            const icon = themeToggle.querySelector('i');
+            if (currentTheme === 'dark') {
+                icon.setAttribute('data-feather', 'sun');
+            } else {
+                icon.setAttribute('data-feather', 'moon');
+            }
+            feather.replace();
+        });
+    }
+    
+    // Initialize feather icons
+    feather.replace();
+    
+    // Mobile menu toggle
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    
+    if (mobileMenuButton && mobileMenu) {
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    }
+});
+    </script>
+</body>
+</html>
